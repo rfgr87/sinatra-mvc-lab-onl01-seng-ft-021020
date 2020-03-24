@@ -12,7 +12,7 @@ class PigLatinizer
       if (word =~ /yY/) == 0
         arr_words << word[1..-1] + 'y' + 'ay'
       elsif (word =~ /aAeEiIoOuU/) == 0 
-        arr_words << word[1..-1] + word[0] + 'way'
+        arr_words << word + 'way'
       else
         vowel_location = first_vowel(word)
         arr_words << word[vowel_location..-1] + word[0..vowel_location-1] + 'ay'
