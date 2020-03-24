@@ -14,7 +14,7 @@ class PigLatinizer
         arr_words << (word + 'way')
       else
         vowel_location = first_vowel(word)
-        arr_words << word[vowel_location..-1] + word[0..vowel_location-1] + 'ay'
+        arr_words << (word[vowel_location..-1] + word[0..vowel_location-1] + 'ay')
       end 
     end
     arr_words.join(" ")
