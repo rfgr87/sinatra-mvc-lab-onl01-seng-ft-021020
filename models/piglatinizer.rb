@@ -2,11 +2,10 @@ class PigLatinizer
   attr_accessor :text
 
   def initialize(text = nil)
-    @text = text
   end
 
-  def piglatinize
-    words = @text.split(" ")
+  def piglatinize(text)
+    words = text.split(" ")
     arr_words = []
     words.map do |word|
       if (word =~ /yY/) == 0
