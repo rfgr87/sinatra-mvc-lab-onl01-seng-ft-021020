@@ -1,35 +1,25 @@
 class PigLatinizer
+  attr_accessor :text
 
-  def piglatinize(word)
-    alphabet = ("A".."z").to_a
-    vowels = ["a", "e", "i", "o", "u", "A", "E", "I", "O", "U"]
-    consonants = alphabet - vowels
-    unusable = ["i", "a", "an", "in", "on", "and"]
-    word.gsub!(/[^a-z0-9\s]/i, '')
-    word = word.split("")
-    # ["k", "i", "t", "t", "e", "n"]
-
-    if unusable.include?(word.join) || word.size <= 1
-      word.join
-    elsif vowels.include?(word[0]) && word.size > 1
-      word.join + "ay"
-    elsif consonants.include?(word[0]) && consonants.include?(word[1]) && consonants.include?(word[2])
-      word = word.rotate.rotate.rotate << "ay"
-      word.join
-    elsif consonants.include?(word[0] && word[1])
-      word.rotate.rotate.join + "ay"
-    else
-      word.rotate.join + "ay"
-    end
-
-end
-
-  def to_pig_latin(words)
-    result = words.split(" ").map do |word|
-      piglatinize(word)
-    end
-    result.join(" ")
+  def initialize(text = nil)
+    @text = text
   end
 
+  def piglatinize
+    words = @text.split(" ")
+    arr_words = []
+    words.map do |word|
+      if (word =~ /yY/) == 0
+        arr_words << word[1..-1] + 'y' + 'ay'
+      else
+        vowel_location = first_vowel(word)
+        arr_words << word[vowel_location..-1] + word[0..vowel_location-1] + 'ay'
+      end 
+    end
+    arr_words.join(" ")
+  end
 
-end
+  def first_vowel(word)
+    word =~ /[aeoui]/
+  end
+end 
