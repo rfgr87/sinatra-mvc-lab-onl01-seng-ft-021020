@@ -21,6 +21,6 @@ class PigLatinizer
   end
 
   def first_vowel(word)
-    word =~ /[aeoui]/
+    word =~ /[aeouiAEOUI]/
   end
 end 
